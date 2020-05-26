@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dziennik</title>
+    <link rel="stylesheet" href="/dziennik.css"type="text/css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{dziennik.css}"/>
+    <style>
+       main{
+            background-color:#969696;
+            color:#456789
+            font-family: 'verdana', sans-serif;
+	    	text-align: right;
+	    	padding: 20px;
+	    	 margin-left: auto;
+            margin-right: auto;
+            width: 800px;}
+        .form {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #858585;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.tabela{
+border: 1px solid #444444;
+max-width: 400px;
+            padding: 10px;
+            margin: 0 auto 20px;
+            background-color: #858585;
+text-align:left;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+
+}
+        h1{text-align: center;
+           }
+
+        body{
+        background-color: #343434;
+        }
+        th{
+        padding: 15px;}
+
+    </style>
+</head>
+<body>
+    <main>
+        <div id="m">
+        <h1>Wyniki biegu 10km</h1>
+        <br/>
+        <br/>
+        <div >
+         <form class="form" th:action="@{/bieg/add}" th:object="${addRunner}" method="post">
+            <p>podaj imie: <input type="text" th:field="*{imie}"/></p>
+            <p>podaj nazwisko: <input type="text" th:field="*{nazwisko}"/></p>
+            <p>podaj czas: <input type="text" th:field="*{czas}"/></p>
+            <p><input type="submit" value="dodaj biegacza"/></p>
+          </form>
+
+
+
+<table class="tabela">
+    <tr>
+        <th>IMIE</th>
+        <th>NAZWISKO</th>
+        <th>CZAS</th>
+    </tr>
+    <tr th:each="runner : ${all}">
+        <td th:text="${runner.imie}">imie</td>
+        <td th:text="${runner.nazwisko}">nazwisko</td>
+        <td th:text="${runner.czas}">czas</td>
+
+    </tr>
+</table>
+        </div>
+        </div>
+    </main>
+</body>
+</html>
